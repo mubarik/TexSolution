@@ -1,11 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}My Product Store{% endblock %}
+
+{% block content %}
+
 <h1>Products</h1>
 <ul>
     {% for product in object_list %}
-    <li>{{ product.name }}  :  
-    <a href="{% url "product_edit" product.p_id %}">{{ product.p_description }}</a>
+    <li>
+    {{ product.p_id }}
+    {{ product.p_description }}
+    {{ product.p_datetime }}
+    {{ product.p_longitude }}
+    {{ product.p_latitude }}
+    {{ product.p_elevation }}  
+    <a href="{% url "product_edit" product.p_id %}">edit</a>
     <a href="{% url "product_delete" product.p_id %}">delete</a>
     </li>
     {% endfor %}
 </ul>
 
 <a href="{% url "product_new" %}">New</a>
+<a href="{% url 'upload_file' %}" class="btn btn-info" role="button">Import Data</a>
+
+{% endblock %}
