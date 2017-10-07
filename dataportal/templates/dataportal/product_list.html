@@ -4,24 +4,42 @@
 {% block title %}My Product Store{% endblock %}
 
 {% block content %}
+    <section>
+      <table class="table table-condensed">
+        <thead class="thead-default">
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Date & Time</th>
+            <th>Lng/Lat</th>
+            <th>Elevation</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
 
-<h1>Products</h1>
-<ul>
-    {% for product in object_list %}
-    <li>
-    {{ product.p_id }}
-    {{ product.p_description }}
-    {{ product.p_datetime }}
-    {{ product.p_longitude }}
-    {{ product.p_latitude }}
-    {{ product.p_elevation }}  
-    <a href="{% url 'product_edit' product.id %}">edit</a>
-    <a href="{% url 'product_delete' product.id %}">delete</a>
-    </li>
-    {% endfor %}
-</ul>
+        <tbody>
+            {% for product in object_list %}
+              <tr>
+                <th scope="row">{{ product.p_id }}</a></th>
+                <td>{{ product.p_description }}</td>
+                <td>{{ product.p_datetime }}</td>
+                <td>{{ product.p_longitude }}, {{ product.p_latitude }}</td>
+                <td>{{ product.p_elevation }}</td>
+                <td><a href="{% url 'product_edit' product.id %}" type="button" class="btn-link">Edit</a></td>
+                <td><a href="{% url 'product_delete' product.id %}">Delete</a></td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </section>
 
-<a href="{% url "product_new" %}">New</a>
-<a href="{% url 'upload_file' %}" class="btn btn-info" role="button">Import Data</a>
+    <section>
+      <div class="row">
+        {% csrf_token %}
+        <a href="{% url 'product_new' %}" class="btn btn-primary" role="button">Add Product</a>
+        <a href="{% url 'upload_file' %}" class="btn btn-info" role="button">Import Data</a>
+      </div>
+    </section>
 
 {% endblock %}
