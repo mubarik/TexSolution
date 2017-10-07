@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse , HttpResponseRedirect
 
 from django.views.generic import TemplateView,ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -53,12 +53,12 @@ def import_data():
             data = row[0].split('\t')
             time = format_datetime(data[2])
             obj, flag = Product.objects.get_or_create(
-                                product_id = data[0],
-                                description = data[1],
-                                datetime = time,
-                                longitude = data[3],
-                                latitude = data[4],
-                                elevation = data[5]
+                                p_id = data[0],
+                                p_description = data[1],
+                                p_datetime = time,
+                                p_longitude = data[3],
+                                p_latitude = data[4],
+                                p_elevation = data[5]
             )
     return True
 

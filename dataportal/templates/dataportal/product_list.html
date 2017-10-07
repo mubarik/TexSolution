@@ -15,8 +15,8 @@
     {{ product.p_longitude }}
     {{ product.p_latitude }}
     {{ product.p_elevation }}  
-    <a href="{% url "product_edit" product.p_id %}">edit</a>
-    <a href="{% url "product_delete" product.p_id %}">delete</a>
+    <a href="{% url 'product_edit' product.id %}">edit</a>
+    <a href="{% url 'product_delete' product.id %}">delete</a>
     </li>
     {% endfor %}
 </ul>
