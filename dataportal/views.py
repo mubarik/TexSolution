@@ -38,7 +38,7 @@ def format_datetime(time):
     try:
         offset = int(strs[-5:])
     except:
-        print "Error"
+        print ("Error")
 
     delta = timedelta(hours = offset / 100)
 
